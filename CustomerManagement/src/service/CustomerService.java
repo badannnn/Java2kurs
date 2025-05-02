@@ -1,10 +1,7 @@
 package service;
 
 import model.Customer;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CustomerService {
@@ -36,7 +33,28 @@ public class CustomerService {
 
     public Optional<Customer> findExactCustomerByName(List<Customer> customers, String name) {
         return customers.stream()
-                .filter(c -> c.getFullName().equalsIgnoreCase(name.trim())) // Полное совпадение
+                .filter(c -> c.getFullName().equalsIgnoreCase(name.trim()))
                 .findFirst();
+    }
+
+    // 🚀 Новая функция: города с количеством покупок > n
+    public Set<String> filterCitiesWithPurchases(List<Customer> customers, int minPurchases) {
+        return customers.stream()
+                .filter(c -> c.getPurchaseCount() > minPurchases)
+                .map(Customer::getCity)
+                .collect(Collectors.toSet());
+    }
+
+    // 🚀 Map: Группировка покупателей по городам
+    public Map<String, List<Customer>> groupByCity(List<Customer> customers) {
+        return customers.stream()
+                .collect(Collectors.groupingBy(Customer::getCity));
+    }
+
+    // 🚀 Map: Общая сумма трат по городам
+    public Map<String, Double> totalSpentByCity(List<Customer> customers) {
+        return customers.stream()
+                .collect(Collectors.groupingBy(Customer::getCity,
+                        Collectors.summingDouble(Customer::getTotalSpent)));
     }
 }

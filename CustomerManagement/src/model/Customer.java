@@ -29,6 +29,7 @@ public class Customer implements Serializable {
     public double getBalance() { return balance; }
     public int getPurchaseCount() { return purchaseCount; }
     public double getTotalSpent() { return totalSpent; }
+
     public double getAveragePurchase() {
         return purchaseCount == 0 ? 0 : totalSpent / purchaseCount;
     }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 4 - Spring Boot</title>
+</head>
+<body>
+<h2>Обчислення значення функції</h2>
+
+<p><strong>Формула функції:</strong></p>
+<pre>
+y = {
+ π·x² − 7/x²           , якщо x < 1.7
+ a·x³ + 7√x            , якщо x = 1.7
+ log₁₀(x + 7√x)        , якщо x > 1.7
+    </pre>
+
+<form method="get" action="/">
+    <label>a: <input type="number" name="a" step="0.01" th:value="${a}" /></label><br>
+    <label>x початок: <input type="number" name="xStart" step="0.01" th:value="${xStart}" /></label><br>
+    <label>x кінець: <input type="number" name="xEnd" step="0.01" th:value="${xEnd}" /></label><br>
+    <label>Крок (Δx): <input type="number" name="dx" step="0.001" th:value="${dx}" /></label><br><br>
+    <button type="submit">Обчислити</button>
+</form>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>x</th>
+        <th>y</th>
+    </tr>
+    <tr th:each="val : ${values}">
+        <td th:text="${val[0]}"></td>
+        <td th:text="${val[1]}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

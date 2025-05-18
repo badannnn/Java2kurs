@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="app.controller.MainController"
+      spacing="10" alignment="CENTER" padding="20">
+    <HBox spacing="5">
+        <TextField fx:id="namePrefixField" promptText="Префікс імені"/>
+        <Button text="Пошук по імені" onAction="#filterByNamePrefix"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <TextField fx:id="cardMinField" promptText="Мін. карта"/>
+        <TextField fx:id="cardMaxField" promptText="Макс. карта"/>
+        <Button text="Інтервал карт" onAction="#filterByCardRange"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <Button text="Заборгованість" onAction="#showDebtors"/>
+        <Button text="Сортувати по витратам" onAction="#sortBySpent"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <TextField fx:id="customerSearchField" promptText="ПІБ"/>
+        <Button text="Пошук покупця" onAction="#searchCustomerAndAvg"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <Button text="Міста з покупками > 2" onAction="#citiesWithMoreThanN"/>
+        <Button text="Мапа: місто → покупці" onAction="#mapCityToCustomers"/>
+        <Button text="Мапа: місто → сума витрат" onAction="#mapCityToTotalSpent"/>
+    </HBox>
+
+    <TextArea fx:id="outputArea" prefRowCount="15" wrapText="true"/>
+</VBox>
